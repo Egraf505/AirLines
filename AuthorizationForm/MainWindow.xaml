@@ -64,8 +64,7 @@
 
         <TextBlock Grid.Column="1" Grid.Row="0" FontSize="48"
                    FontWeight="SemiBold" Foreground="#ffffff"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   >
+                   VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock.Text>
                 Бахмутоврейс
             </TextBlock.Text>
@@ -73,22 +72,22 @@
         
         <Border Grid.Column="1" Grid.Row="1" Background="#003B46" CornerRadius="10">
             <StackPanel>
-                <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" 
-                         Height="50" MaxWidth="300" Margin="30 60 30 30"
-                         BorderThickness="0" 
-                         FontSize="35" FontWeight="SemiBold" Foreground="#1B1717"            
-                         VerticalContentAlignment="Center" >
-                    
-                    
-                    
+                <TextBox x:Name="LoginBox" Tag="Логин" Text="Логин"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus">
                 </TextBox>
-                
-                
-                <TextBox/>
+
+
+                <TextBox Tag="Пароль" Text="Пароль"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"/>
                 
                 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock/>
+                    <TextBlock FontSize="20" Text="Запомнить меня"
+                               Foreground="#FFFFFF" 
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               />
                     
                     <CheckBox/>
                     

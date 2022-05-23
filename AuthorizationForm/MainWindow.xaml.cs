@@ -19,7 +19,8 @@ namespace AuthorizationForm
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {      
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,6 +29,30 @@ namespace AuthorizationForm
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;  
+
+            if (textBox.Text == textBox.Tag.ToString())
+            {
+                textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                textBox.HorizontalContentAlignment = HorizontalAlignment.Left;           
+                textBox.Text = String.Empty;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Text == String.Empty || textBox.Text == null)
+            {
+                textBox.Foreground = new SolidColorBrush(Color.FromRgb(109, 104, 104));
+                textBox.HorizontalContentAlignment = HorizontalAlignment.Center;                
+                textBox.Text = textBox.Tag.ToString();
+            }
         }
     }
 
