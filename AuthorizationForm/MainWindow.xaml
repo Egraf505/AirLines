@@ -46,12 +46,11 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.20*"/>
+            <RowDefinition Height="0.25*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0.20*"/>
+            <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
-        
-        
+
         <Border CornerRadius="10" Grid.ColumnSpan="3" Grid.RowSpan="3"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown">
             <Border.Background>
@@ -69,37 +68,54 @@
                 Бахмутоврейс
             </TextBlock.Text>
         </TextBlock>
-        
+
+        <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"
+                    VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Height="30" Width="30" Style="{StaticResource ClosingMinimazedButtun}" Content="-" Click="Minimezed_Click"/>
+            <Button Height="30" Width="30" Style="{StaticResource ClosingMinimazedButtun}" Content="x" Click="Close_Click"/>
+        </StackPanel>
+
         <Border Grid.Column="1" Grid.Row="1" Background="#003B46" CornerRadius="10">
             <StackPanel>
-                <TextBox x:Name="LoginBox" Tag="Логин" Text="Логин"
+                <TextBox x:Name="LoginBox" Tag="Логин" Text="{Binding Login}"
                          GotFocus="TextBox_GotFocus"
                          LostFocus="TextBox_LostFocus">
                 </TextBox>
 
 
-                <TextBox Tag="Пароль" Text="Пароль"
+                <TextBox Tag="Пароль" Text="{Binding Password}"
                          GotFocus="TextBox_GotFocus"
                          LostFocus="TextBox_LostFocus"/>
-                
-                
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="20" Text="Запомнить меня"
-                               Foreground="#FFFFFF" 
-                               VerticalAlignment="Center" HorizontalAlignment="Center"
-                               />
-                    
-                    <CheckBox/>
-                    
+
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                    <CheckBox 
+                              VerticalAlignment="Center" HorizontalAlignment="Center"
+                              Content="Запомнить меня"
+                              FontSize="13" Foreground="#FFFFFF"
+                              Margin="0 20 0 0"
+                        IsChecked="{Binding RememberUser}">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2.1" />
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+
                 </StackPanel>
-                
-                
-                <Button/>
-                
-                
-                <Button/>
-                
-                
+
+
+                <Button Style="{StaticResource EnterButtun}" Content="Войти" Command="{Binding OnLogIn}"/>
+
+
+                <Button Style="{StaticResource MovingButtun}">
+                    <Button.Content>
+                        <TextBlock>
+                        <Underline>Регистрация</Underline>
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+
+
             </StackPanel>
         </Border>
     </Grid>
