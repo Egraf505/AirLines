@@ -15,11 +15,13 @@ namespace AuthorizationForm
     {
         public AuthorizationFormViewModel()
         {
-            _login = "Логин";
-            _password = "Пароль";
-            _rememberUser = false;
+            
+
+            _loginR = "Логин";
+            _passwordR = "Пароль";
+            _firstnameR = "Имя";
         }    
-        private string _login;        
+        private string _login = "Логин";        
 
         public string Login
         {
@@ -31,7 +33,7 @@ namespace AuthorizationForm
             }
         }
 
-        private string _password;
+        private string _password = "Пароль";
 
         public string Password
         {
@@ -43,12 +45,54 @@ namespace AuthorizationForm
             }
         }
 
-        private bool _rememberUser;
+        private bool _rememberUser = false;
         public bool RememberUser
         {
             get { return _rememberUser; }
             set { _rememberUser = value; OnPropertyChanged();}
         }
+
+
+
+
+
+        private string _loginR = "Логин";
+        public string LoginR
+        {
+            get { return _loginR; }
+            set { _loginR = value; OnPropertyChanged(); }
+        }
+
+        private string _passwordR = "Пароль";
+        public string PasswordR
+        {
+            set { _passwordR = value;OnPropertyChanged(); }
+            get { return _passwordR; }
+        }
+
+        private string _firstnameR = "Имя";
+        public string FirstnameR
+        {
+            get { return _firstnameR; }
+            set { _firstnameR = value; OnPropertyChanged();}
+        }
+
+        private string _lastnameR = "Фамилия";
+        public string LastnameR
+        {
+            get { return _lastnameR; }
+            set { _lastnameR = value; OnPropertyChanged();}
+        }
+
+        private string _middlenameR = "Отчество";
+        public string MiddlenameR
+        {
+            get { return _middlenameR;}
+            set { _middlenameR = value; OnPropertyChanged(); }
+        }
+
+
+
         private void LogIn()
         {
             if (_rememberUser)
@@ -58,11 +102,25 @@ namespace AuthorizationForm
             OpenMain();
         }
 
+
+        private void Reg()
+        {
+
+        }
+
         public ICommand OnLogIn
         {
             get
             {
                 return new RelayCommand(LogIn);
+            }
+        }       
+
+        public ICommand OnReg
+        {
+            get
+            {
+                return new RelayCommand(Reg);
             }
         }
 

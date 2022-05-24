@@ -64,5 +64,17 @@ namespace AuthorizationForm
         {
             Application.Current.Shutdown();   
         }
+
+        private void LogInMov_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationBorder.Visibility = Visibility.Collapsed;
+            LoginBorder.Visibility = Visibility.Visible;
+        }
+
+        private void RegMov_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationBorder.Visibility = Visibility.Visible;
+            LoginBorder.Visibility = Visibility.Collapsed;
+        }
     }
 }

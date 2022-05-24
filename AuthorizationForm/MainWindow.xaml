@@ -75,7 +75,7 @@
             <Button Height="30" Width="30" Style="{StaticResource ClosingMinimazedButtun}" Content="x" Click="Close_Click"/>
         </StackPanel>
 
-        <Border Grid.Column="1" Grid.Row="1" Background="#003B46" CornerRadius="10">
+        <Border x:Name="LoginBorder" Grid.Column="1" Grid.Row="1" Background="#003B46" CornerRadius="10" Visibility="Visible">
             <StackPanel>
                 <TextBox x:Name="LoginBox" Tag="Логин" Text="{Binding Login}"
                          GotFocus="TextBox_GotFocus"
@@ -107,7 +107,7 @@
                 <Button Style="{StaticResource EnterButtun}" Content="Войти" Command="{Binding OnLogIn}"/>
 
 
-                <Button Style="{StaticResource MovingButtun}">
+                <Button Style="{StaticResource MovingButtun}" Click="RegMov_Click">
                     <Button.Content>
                         <TextBlock>
                         <Underline>Регистрация</Underline>
@@ -116,6 +116,44 @@
                 </Button>
 
 
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="RegistrationBorder" Grid.Column="1" Grid.Row="1" Background="#003B46" CornerRadius="10" Visibility="Collapsed">
+            <StackPanel Orientation="Vertical">
+                <TextBox x:Name="LoginBoxR" Style="{StaticResource registrationTexBox}" Tag="Логин"
+                         Text="{Binding LoginR}"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"/>
+
+                <TextBox x:Name="PasswordBoxR" Style="{StaticResource registrationTexBox}" Tag="Пароль"
+                         Text="{Binding PasswordR}"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"/>
+
+                <TextBox x:Name="FirstnameBoxR" Style="{StaticResource registrationTexBox}" Tag="Имя"
+                         Text="{Binding FirstnameR}"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"/>
+
+                <TextBox x:Name="LastnameBoxR" Style="{StaticResource registrationTexBox}" Tag="Фамилия"
+                         Text="{Binding LastnameR}"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"/>
+
+                <TextBox x:Name="MiddlenameBoxR" Style="{StaticResource registrationTexBox}" Tag="Отчество"
+                         Text="{Binding MiddlenameR}"
+                         GotFocus="TextBox_GotFocus"
+                         LostFocus="TextBox_LostFocus"/>
+
+                <Button Content="Регистрация" Style="{StaticResource EnterButtonR}"/>
+                <Button Style="{StaticResource MovingButtun}" Click="LogInMov_Click">
+                    <Button.Content>
+                        <TextBlock>
+                        <Underline>Войти</Underline>
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
             </StackPanel>
         </Border>
     </Grid>
