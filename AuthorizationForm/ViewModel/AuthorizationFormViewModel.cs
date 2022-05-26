@@ -1,13 +1,16 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DB;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Newtonsoft.Json;
 
 namespace AuthorizationForm
 {
@@ -95,17 +98,61 @@ namespace AuthorizationForm
 
         private void LogIn()
         {
-            if (_rememberUser)
-            {
 
+            if (_login != null && _password != null)
+            {
+                User user;
+
+                using (AirFligthsContext context = new AirFligthsContext())
+                {
+                    user = context.Users.FirstOrDefault(x => x.Login == _login && x.Password == _password)!;
+                    if (user != null)
+                    {
+                        if (_rememberUser)
+                        {
+                            File.WriteAllText("config.json", JsonConvert.SerializeObject(user));                            
+                        }
+                        OpenMain(user.Login, user.Password);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не правильный логин или пароль");
+                    }
+                }
             }
-            OpenMain();
         }
 
 
         private void Reg()
         {
+            string[] data = { _loginR,  _passwordR,  _firstnameR, _lastnameR };
+            if (OnCheck(data))
+            {
+                User user = new() { Login = _loginR, Password = _passwordR, Firstname = _firstnameR, Lastname = _lastnameR, Middlename = _middlenameR };
 
+                using (AirFligthsContext context = new AirFligthsContext())
+                {
+                    context.Users.Add(user);
+                    context.SaveChanges();
+                    MessageBox.Show("Регистрация успешна");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Некоректно ведённые данные");
+            }
+        }
+    
+        private bool OnCheck(string[] data)
+        {
+            foreach (var item in data)
+            {
+                if (String.IsNullOrEmpty(item))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public ICommand OnLogIn
@@ -123,13 +170,12 @@ namespace AuthorizationForm
                 return new RelayCommand(Reg);
             }
         }
-
-        public void OpenMain()
+        public void OpenMain(string login, string password)
         {
-            MainForm.MainWindow mainWindow = new();
+            MainForm.MainWindow mainWindow = new(login, password);
             mainWindow.Show();
             Application.Current.MainWindow.Close();
-        }
+        }      
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

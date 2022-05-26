@@ -27,7 +27,7 @@ namespace MainForm
 
         public MainWindow(string login, string password)
         {
-
+            InitializeComponent();
         }
     }
 }

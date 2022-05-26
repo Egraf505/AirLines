@@ -146,7 +146,7 @@
                          GotFocus="TextBox_GotFocus"
                          LostFocus="TextBox_LostFocus"/>
 
-                <Button Content="Регистрация" Style="{StaticResource EnterButtonR}"/>
+                <Button Content="Регистрация" Style="{StaticResource EnterButtonR}" Command="{Binding OnReg}"/>
                 <Button Style="{StaticResource MovingButtun}" Click="LogInMov_Click">
                     <Button.Content>
                         <TextBlock>
