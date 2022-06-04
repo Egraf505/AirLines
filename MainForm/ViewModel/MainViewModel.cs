@@ -10,15 +10,15 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using DB;
 using GalaSoft.MvvmLight.Command;
-using MainForm.Page;
+using MainForm.Pages;
 
 namespace MainForm.ViewModel
 {
     internal class MainViewModel : INotifyPropertyChanged
     {
-        private System.Windows.Controls.Page _airTicketsPage;
-        private System.Windows.Controls.Page _userTicketsPage;
-        private System.Windows.Controls.Page _exitPage;
+        private Page _airTicketsPage;
+        private Page _userTicketsPage;
+        private Page _exitPage;
 
         private User _user;
         public User User
@@ -27,29 +27,23 @@ namespace MainForm.ViewModel
             set { _user = value;  OnPropertyChanged(); }
         }
 
-        private string _name;
         public string Name
         {
             get { return User.Firstname; }
-            set { _name = value; OnPropertyChanged();}
         }
 
-        private string _lastname;
         public string LastName
         {
-            get { return User.Lastname; }
-            set { _lastname = value; OnPropertyChanged();}
+            get { return User.Lastname; }            
         }
 
-        private string _cut;
         public string Cut
         {
             get { return (Name[0].ToString()+LastName[0]).ToUpper(); }
-            set { _cut = value; OnPropertyChanged();}
         }
 
-        private System.Windows.Controls.Page _currentPage;
-        public System.Windows.Controls.Page CurrentPage
+        private Page _currentPage;
+        public Page CurrentPage
         {
             get { return _currentPage; }
             set { _currentPage = value; OnPropertyChanged();}

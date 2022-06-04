@@ -107,7 +107,7 @@
                                    Foreground="#ffffff"
                                    FontSize="15" FontWeight="SemiBold"/>
                     </StackPanel>
-                    
+
                 </StackPanel>
 
                 <Separator Background="#BDBABA" Margin="25 35 25 35" Height="1"/>
@@ -138,11 +138,6 @@
             </StackPanel>
         </Border>
 
-        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" 
-               Source="{Binding CurrentPage}">
-
-        </Frame>
-
         <Border Grid.Column="1" CornerRadius="0 10 10 0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -151,5 +146,10 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
+
+        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" 
+               Content="{Binding CurrentPage}">
+
+        </Frame>
     </Grid>
 </Window>

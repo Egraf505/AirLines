@@ -14,17 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MainForm.Page
+namespace MainForm.Pages
 {
     /// <summary>
     /// Логика взаимодействия для AirTicketsPage.xaml
     /// </summary>
-    public partial class AirTicketsPage : System.Windows.Controls.Page
+    public partial class AirTicketsPage : Page
     {
         public AirTicketsPage()
         {
             InitializeComponent();
         }
+
         public AirTicketsPage(User user)
         {
             InitializeComponent();

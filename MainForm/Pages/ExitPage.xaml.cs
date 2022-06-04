@@ -14,18 +14,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MainForm.Page
+namespace MainForm.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для UserTicketsPage.xaml
+    /// Логика взаимодействия для ExitPage.xaml
     /// </summary>
-    public partial class UserTicketsPage : System.Windows.Controls.Page
+    public partial class ExitPage : Page
     {
-        public UserTicketsPage()
+        public ExitPage()
         {
             InitializeComponent();
         }
-        public UserTicketsPage(User user)
+
+        public ExitPage(User user)
         {
             InitializeComponent();
         }
