@@ -1,4 +1,4 @@
-﻿using MainForm.ViewModel;
+﻿using DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,22 +14,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MainForm
+namespace MainForm.Page
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для AirTicketsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {      
-        public MainWindow(string login, string password)
+    public partial class AirTicketsPage : System.Windows.Controls.Page
+    {
+        public AirTicketsPage()
         {
             InitializeComponent();
-            DataContext = new MainViewModel(login, password);
         }
-
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        public AirTicketsPage(User user)
         {
-            this.DragMove();
+            InitializeComponent();
         }
     }
 }

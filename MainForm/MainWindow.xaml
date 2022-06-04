@@ -3,10 +3,153 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MainForm"
+        xmlns:local="clr-namespace:MainForm" 
+        xmlns:local1="clr-namespace:MainForm.ViewModel"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Ура"/>
+        Height="740" Width="1280"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="ButtonMenu" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#BAC2C2"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Margin" Value="0 0 0 5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="4 0 0 0" BorderBrush="Transparent">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                    <Setter Property="Background" Value="#66A5AD"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderThickness="4 0 0 0" BorderBrush="#ffffff">
+                                    <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                    <Setter Property="Background" Value="#66A5AD"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderThickness="4 0 0 0" BorderBrush="#ffffff">
+                                    <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TextMenu" TargetType="TextBlock">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="25 0 0 0"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="Transparent" MouseDown="Grid_MouseDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.20*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Border Grid.Column="0" CornerRadius="10 0 0 10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#003B46" Offset="0"/>
+                    <GradientStop Color="#096F82" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <!--UserName-->
+            <StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal"
+                            Margin="0 35 0 0">
+                    <Border CornerRadius="10" Width="40" Height="40">
+                        <Border.Background>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#0C7F95" Offset="0"/>
+                                <GradientStop Color="#66A5AD" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <TextBlock Text="{Binding Cut}" Foreground="#ffffff" FontSize="22"
+                                   FontWeight="SemiBold" TextAlignment="Center" VerticalAlignment="Center"
+                                   Margin="3 0 0 2"/>
+
+                    </Border>
+
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center"
+                                Margin="10 0 0 0">
+                        <TextBlock Text="{Binding Name}" Foreground="#ffffff"
+                                   FontSize="15" FontWeight="SemiBold"
+                                   Margin="0 0 0 5"/>
+                        <TextBlock Text="{Binding LastName}"
+                                   Foreground="#ffffff"
+                                   FontSize="15" FontWeight="SemiBold"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+
+                <Separator Background="#BDBABA" Margin="25 35 25 35" Height="1"/>
+
+                <DockPanel Height="580" LastChildFill="False">
+
+                    <Button DockPanel.Dock="Top" Style="{StaticResource ButtonMenu}"
+                            Command="{Binding ToAirTicketFrame}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Авиабилеты" Style="{StaticResource TextMenu}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button DockPanel.Dock="Top" Style="{StaticResource ButtonMenu}"
+                            Command="{Binding ToUserTicketFrame}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Билеты" Style="{StaticResource TextMenu}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button DockPanel.Dock="Bottom" Style="{StaticResource ButtonMenu}"
+                            Command="{Binding ToExitFrame}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Выход" Style="{StaticResource TextMenu}"/>
+                        </StackPanel>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+
+        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" 
+               Source="{Binding CurrentPage}">
+
+        </Frame>
+
+        <Border Grid.Column="1" CornerRadius="0 10 10 0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#66A5AD" Offset="0"/>
+                    <GradientStop Color="#ffffff" Offset="1.5"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
     </Grid>
 </Window>
