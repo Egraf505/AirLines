@@ -38,19 +38,14 @@ namespace AuthorizationForm
             InitializeComponent();
         }
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;  
+            TextBox textBox = (TextBox)sender;
 
             if (textBox.Text == textBox.Tag.ToString())
             {
                 textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                textBox.HorizontalContentAlignment = HorizontalAlignment.Left;           
+                textBox.HorizontalContentAlignment = HorizontalAlignment.Left;
                 textBox.Text = String.Empty;
             }
         }
@@ -62,10 +57,15 @@ namespace AuthorizationForm
             if (textBox.Text == String.Empty || textBox.Text == null)
             {
                 textBox.Foreground = new SolidColorBrush(Color.FromRgb(109, 104, 104));
-                textBox.HorizontalContentAlignment = HorizontalAlignment.Center;                
+                textBox.HorizontalContentAlignment = HorizontalAlignment.Center;
                 textBox.Text = textBox.Tag.ToString();
             }
         }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }        
 
         private void Minimezed_Click(object sender, RoutedEventArgs e)
         {

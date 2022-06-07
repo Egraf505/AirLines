@@ -1,4 +1,5 @@
 ﻿using DB;
+using MainForm.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,38 @@ namespace MainForm.Pages
     {
         public AirTicketsPage()
         {
+            DataContext = new TicketsViewModel();
             InitializeComponent();
         }
 
         public AirTicketsPage(User user)
         {
+            DataContext = new TicketsViewModel();
             InitializeComponent();
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Text == textBox.Tag.ToString())
+            {
+                textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                textBox.HorizontalContentAlignment = HorizontalAlignment.Left;
+                textBox.Text = String.Empty;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Text == String.Empty || textBox.Text == null)
+            {
+                textBox.Foreground = new SolidColorBrush(Color.FromRgb(109, 104, 104));
+                textBox.HorizontalContentAlignment = HorizontalAlignment.Center;
+                textBox.Text = textBox.Tag.ToString();
+            }
         }
     }
 }
