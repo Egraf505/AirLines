@@ -145,13 +145,18 @@
                          LostFocus="TextBox_LostFocus"/>
 
                 <Viewbox Width="150" Height="40">
-                    <DatePicker/>
+                    <DatePicker SelectedDate="{Binding Date}"/>
                 </Viewbox>
 
-                <Button Style="{StaticResource SearchButtin}" Content="{StaticResource SearcArrow}"/>
-                
+                <Button Style="{StaticResource SearchButtin}" Content="{StaticResource SearcArrow}"
+                        Command="{Binding OnSearch}"/>
+
             </StackPanel>
-            
         </Border>
+
+        <StackPanel Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding AirLines}">
+            </ItemsControl>
+        </StackPanel>
     </Grid>
 </Page>

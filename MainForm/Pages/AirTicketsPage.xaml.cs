@@ -21,16 +21,10 @@ namespace MainForm.Pages
     /// Логика взаимодействия для AirTicketsPage.xaml
     /// </summary>
     public partial class AirTicketsPage : Page
-    {
-        public AirTicketsPage()
-        {
-            DataContext = new TicketsViewModel();
-            InitializeComponent();
-        }
-
+    {       
         public AirTicketsPage(User user)
         {
-            DataContext = new TicketsViewModel();
+            DataContext = new TicketsViewModel(user);
             InitializeComponent();
         }
 

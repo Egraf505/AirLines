@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="MainForm.Tickets"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MainForm"
+             mc:Ignorable="d" 
+             d:DesignHeight="140" d:DesignWidth="800">
+    <Grid>
+        <Border CornerRadius="10" Background="#003B46" BorderThickness="0" BorderBrush="Transparent">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+            </Border.Effect>
+        </Border>
+
+        <StackPanel Orientation="Horizontal" Margin="20 10">
+
+            <Border CornerRadius="8" Width="50" Height="25" VerticalAlignment="Top">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#0C7F95" Offset="0"/>
+                        <GradientStop Color="#66A5AD" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                
+                <!--Номер авиа линии-->
+                <TextBlock Text="20" 
+                           Background="Transparent" Foreground="#ffffff" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           FontSize="20" FontWeight="SemiBold"/>
+                
+            </Border>
+
+            <StackPanel Orientation="Vertical" Margin="25 0 0 0">
+                
+                <StackPanel Orientation="Horizontal">
+                    <!--Время отбытия-->
+                    <TextBlock Text="20:00" 
+                               Background="Transparent" Foreground="#ffffff"
+                               FontSize="36" FontWeight="SemiBold"
+                               Margin="15 10 0 10"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    
+                    <!--Дата отбытия-->
+                    <TextBlock Text="15 мая"
+                               Background="Transparent" Foreground="#ffffff"
+                               FontSize="16" FontWeight="SemiBold"
+                               Margin="10 10 0 0"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!--Город отбытия-->
+                <TextBlock Text="Москва"
+                           Background="Transparent" Foreground="#ffffff"
+                           FontSize="16" FontWeight="SemiBold"
+                           HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="65 0 0 0">
+
+                <StackPanel Orientation="Horizontal">
+                    <!--Время прибития-->
+                    <TextBlock Text="20:00" 
+                               Background="Transparent" Foreground="#ffffff"
+                               FontSize="36" FontWeight="SemiBold"
+                               Margin="15 10 0 10"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    
+                    <!--Дата прибитие-->
+                    <TextBlock Text="15 мая"
+                               Background="Transparent" Foreground="#ffffff"
+                               FontSize="16" FontWeight="SemiBold"
+                               Margin="10 10 0 0"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                
+                <!--Город прибития-->
+                <TextBlock Text="Москва"
+                           Background="Transparent" Foreground="#ffffff"
+                           FontSize="16" FontWeight="SemiBold"
+                           HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="20 0 0 0">
+                <Separator Width="1" Background="#ffffff" Margin="0 10 0 10"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="60 0 0 0">
+                
+                <Button Content="Забронировать" Foreground="#ffffff" 
+                        FontSize="16" FontWeight="SemiBold" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="8" Width="205" Height="25">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                                <Border.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="#0C7F95" Offset="0"/>
+                                        <GradientStop Color="#66A5AD" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <TextBlock Text="Билетов: 16" 
+                           Foreground="#ffffff"
+                           FontSize="13" FontWeight="SemiBold"
+                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            </StackPanel>
+            
+        </StackPanel>
+        
+    </Grid>
+</UserControl>
