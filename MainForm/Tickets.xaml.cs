@@ -23,6 +23,7 @@ namespace MainForm
         public Tickets()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         public int Number
@@ -75,14 +76,21 @@ namespace MainForm
         }
 
 
-        RoutedEvent AccesButtonEvent = EventManager.RegisterRoutedEvent("AccesClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Tickets));
-        DependencyProperty CountTicketsProperty = DependencyProperty.Register("CountTickets", typeof(string), typeof(Tickets));
-        DependencyProperty CityDepartureProperty = DependencyProperty.Register("CityDeparture", typeof(string), typeof(Tickets));
-        DependencyProperty CityArriveProperty = DependencyProperty.Register("CityArrive", typeof(string), typeof(Tickets));
-        DependencyProperty DateDepartureProperty = DependencyProperty.Register("DateDeparture", typeof(string), typeof(Tickets));
-        DependencyProperty DateArriveProperty = DependencyProperty.Register("DateArrive", typeof(string), typeof(Tickets));
-        DependencyProperty TimeDepartureProperty = DependencyProperty.Register("Departure", typeof(string), typeof(Tickets));
-        DependencyProperty TimeArriveProperty = DependencyProperty.Register("TimeArrive", typeof(string), typeof(Tickets));
-        DependencyProperty NumberProperty = DependencyProperty.Register("Number", typeof(int), typeof(Tickets));
+        public static readonly RoutedEvent AccesButtonEvent = EventManager.RegisterRoutedEvent("AccesClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Tickets));
+
+
+        public static readonly DependencyProperty CountTicketsProperty = DependencyProperty.Register("CountTickets", typeof(string), typeof(Tickets));
+        public static readonly DependencyProperty CityDepartureProperty = DependencyProperty.Register("CityDeparture", typeof(string), typeof(Tickets));
+        public static readonly DependencyProperty CityArriveProperty = DependencyProperty.Register("CityArrive", typeof(string), typeof(Tickets));
+        public static readonly DependencyProperty DateDepartureProperty = DependencyProperty.Register("DateDeparture", typeof(string), typeof(Tickets));
+        public static readonly DependencyProperty DateArriveProperty = DependencyProperty.Register("DateArrive", typeof(string), typeof(Tickets));
+        public static readonly DependencyProperty TimeDepartureProperty = DependencyProperty.Register("Departure", typeof(string), typeof(Tickets));
+        public static readonly DependencyProperty TimeArriveProperty = DependencyProperty.Register("TimeArrive", typeof(string), typeof(Tickets));
+        public static readonly DependencyProperty NumberProperty = DependencyProperty.Register("Number", typeof(int), typeof(Tickets));
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(Tickets.AccesButtonEvent));
+        }
     }
 }

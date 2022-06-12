@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MainForm.ViewModel
@@ -16,8 +17,8 @@ namespace MainForm.ViewModel
     {
         private readonly User _user;
 
-        private ObservableCollection<AirLine> _airLines;
-        public ObservableCollection<AirLine> AirLines
+        private ObservableCollection<Tickets> _airLines;
+        public ObservableCollection<Tickets> AirLines
         {
             get { return _airLines; }
             set { _airLines = value;  OnPropertyChanged(); }
@@ -76,8 +77,22 @@ namespace MainForm.ViewModel
                         {                           
                             foreach (AirLine airLine in airLines)
                             {
-                                List<Ticket> ticketList = new List<Ticket>(context.Tickets.Where(x => x.IdAirLinesNavigation == airLine));
-                                _airLines.Add(airLine);
+                                int ticketList = context.Tickets.Count(x => x.IdAirLinesNavigation == airLine && x.IdUser == null);
+                                City cityDeparture = context.Cities.FirstOrDefault(x => x.Id == airLine.CityDeparture)!;
+                                City cityArrive = context.Cities.FirstOrDefault(x => x.Id == airLine.CityArrival)!;
+
+                                Tickets tickets = new Tickets();
+
+                                tickets.Number = airLine.Id;                             
+                                tickets.TimeDeparture = airLine.DatetimeDeparture.ToString()!;
+                                tickets.TimeArrive = airLine.DatetimeArrival.ToString()!;
+                                tickets.CityDeparture = cityDeparture.Tittle;
+                                tickets.CityArrive = cityArrive.Tittle;
+                                tickets.CountTickets = $"Билетов: {ticketList}";
+
+                                tickets.AddHandler(Tickets.AccesButtonEvent, new RoutedEventHandler(AccessClickHandler));
+
+                                _airLines.Add(tickets);
                             }
                         }                        
                     }
@@ -85,10 +100,15 @@ namespace MainForm.ViewModel
             });
         }
 
+        private void AccessClickHandler(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Нажата кнопка");
+        }
+
         public TicketsViewModel(User user)
         {
             _user = user;
-            _airLines = new ObservableCollection<AirLine>();
+            _airLines = new ObservableCollection<Tickets>();           
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
