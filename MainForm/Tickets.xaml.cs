@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,14 @@ namespace MainForm
     /// </summary>
     public partial class Tickets : UserControl
     {
-        public Tickets()
+        public Tickets(User user)
         {
             InitializeComponent();
             DataContext = this;
+            _user = user;
         }
+
+        private User _user;
 
         public int Number
         {
@@ -90,6 +94,15 @@ namespace MainForm
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            using(AirFligthsContext context = new AirFligthsContext())
+            {
+                Ticket ticket = context.Tickets.FirstOrDefault(x => x.IdAirLines == Number && x.IdUser == null)!;
+                if (ticket != null)
+                {
+                    ticket.IdUserNavigation = _user;
+                }
+                context.SaveChanges();
+            }
             RaiseEvent(new RoutedEventArgs(Tickets.AccesButtonEvent));
         }
     }

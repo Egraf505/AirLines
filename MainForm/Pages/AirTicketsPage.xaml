@@ -154,9 +154,11 @@
             </StackPanel>
         </Border>
 
-        <StackPanel Grid.Row="1" Margin="100 60 100 0">
-            <ItemsControl ItemsSource="{Binding AirLines}">
-            </ItemsControl>
-        </StackPanel>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="100 60 100 0">
+                <ItemsControl ItemsSource="{Binding AirLines}">
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

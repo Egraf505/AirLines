@@ -60,49 +60,57 @@ namespace MainForm.ViewModel
         {
             get => new RelayCommand(() => 
             {
-                if (_cityInput != null && _cityOupout != null)
-                {                    
-                    using (AirFligthsContext context = new AirFligthsContext())
+                ShowAirlines();
+            });
+        }
+
+        private void ShowAirlines()
+        {
+            if (_cityInput != null && _cityOupout != null)
+            {
+                using (AirFligthsContext context = new AirFligthsContext())
+                {
+                    City incity = context.Cities.FirstOrDefault(x => x.Tittle == _cityInput)!;
+                    City outcity = context.Cities.FirstOrDefault(x => x.Tittle == _cityOupout)!;
+
+                    DateTime departure = Date;
+                    DateTime arrival = departure;
+                    arrival = arrival.AddDays(1);
+
+                    List<AirLine> airLines = new List<AirLine>(context.AirLines.Where(x => x.CityArrivalNavigation == incity && x.CityDepartureNavigation == outcity && x.DatetimeDeparture == departure && x.DatetimeArrival == arrival));
+
+                    if (airLines != null)
                     {
-                        City incity = context.Cities.FirstOrDefault(x => x.Tittle == _cityInput)!;
-                        City outcity = context.Cities.FirstOrDefault(x => x.Tittle == _cityOupout)!;
+                        _airLines.Clear();
+                        foreach (AirLine airLine in airLines)
+                        {
+                            int ticketList = context.Tickets.Count(x => x.IdAirLinesNavigation == airLine && x.IdUser == null);
+                            City cityDeparture = context.Cities.FirstOrDefault(x => x.Id == airLine.CityDeparture)!;
+                            City cityArrive = context.Cities.FirstOrDefault(x => x.Id == airLine.CityArrival)!;
 
-                        DateTime departure = Date;
-                        DateTime arrival = departure;
-                        arrival = arrival.AddDays(1);
+                            Tickets tickets = new Tickets(_user);
 
-                        List<AirLine> airLines = new List<AirLine>(context.AirLines.Where(x => x.CityArrivalNavigation == incity && x.CityDepartureNavigation == outcity && x.DatetimeDeparture == departure && x.DatetimeArrival == arrival));
+                            tickets.Number = airLine.Id;
+                            tickets.TimeDeparture = airLine.DatetimeDeparture.ToString()!;
+                            tickets.TimeArrive = airLine.DatetimeArrival.ToString()!;
+                            tickets.CityDeparture = cityDeparture.Tittle;
+                            tickets.CityArrive = cityArrive.Tittle;
+                            tickets.CountTickets = $"Билетов: {ticketList}";
 
-                        if (airLines != null)
-                        {                           
-                            foreach (AirLine airLine in airLines)
-                            {
-                                int ticketList = context.Tickets.Count(x => x.IdAirLinesNavigation == airLine && x.IdUser == null);
-                                City cityDeparture = context.Cities.FirstOrDefault(x => x.Id == airLine.CityDeparture)!;
-                                City cityArrive = context.Cities.FirstOrDefault(x => x.Id == airLine.CityArrival)!;
+                            tickets.AddHandler(Tickets.AccesButtonEvent, new RoutedEventHandler(AccessClickHandler));
 
-                                Tickets tickets = new Tickets();
-
-                                tickets.Number = airLine.Id;                             
-                                tickets.TimeDeparture = airLine.DatetimeDeparture.ToString()!;
-                                tickets.TimeArrive = airLine.DatetimeArrival.ToString()!;
-                                tickets.CityDeparture = cityDeparture.Tittle;
-                                tickets.CityArrive = cityArrive.Tittle;
-                                tickets.CountTickets = $"Билетов: {ticketList}";
-
-                                tickets.AddHandler(Tickets.AccesButtonEvent, new RoutedEventHandler(AccessClickHandler));
-
-                                _airLines.Add(tickets);
-                            }
-                        }                        
+                            _airLines.Add(tickets);
+                        }
                     }
                 }
-            });
+            }
         }
 
         private void AccessClickHandler(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Нажата кнопка");
+
+            ShowAirlines();
+            MessageBox.Show("Вы забронировали");
         }
 
         public TicketsViewModel(User user)
