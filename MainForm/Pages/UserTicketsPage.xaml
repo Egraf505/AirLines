@@ -9,6 +9,25 @@
       Title="UserTicketsPage">
 
     <Grid>
-        <TextBlock Text="Мои билеты" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Ваши билеты" 
+                   Foreground="#ffffff"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontWeight="SemiBold" FontSize="32"
+                   Margin="170 0 0 0"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Orientation="Vertical"
+                        Margin="100 0 100 0">
+                <ItemsControl ItemsSource="{Binding UserTickets}">
+                    
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        
     </Grid>
 </Page>

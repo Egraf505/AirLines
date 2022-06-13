@@ -1,6 +1,4 @@
-﻿using DB;
-using MainForm.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MainForm.Pages
+namespace MainForm
 {
     /// <summary>
-    /// Логика взаимодействия для UserTicketsPage.xaml
+    /// Логика взаимодействия для UserTicket.xaml
     /// </summary>
-    public partial class UserTicketsPage : Page
+    public partial class UserTicket : UserControl
     {
-        public UserTicketsPage(User user)
+        public UserTicket()
         {
             InitializeComponent();
-            DataContext = new MyTicketsViewModel(user);
         }
     }
 }
