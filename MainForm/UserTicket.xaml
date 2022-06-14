@@ -5,8 +5,135 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MainForm"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="140" d:DesignWidth="770">
+
+    <UserControl.Resources>
+        <Style x:Key="Button" TargetType="Button">
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="Width" Value="144"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                            <Border.Background>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="#0C7F95" Offset="0"/>
+                                    <GradientStop Color="#66A5AD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                                    <Border.Background>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#085E6F" Offset="0"/>
+                                            <GradientStop Color="#49757A" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
             
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Width="770" Height="140">
+        <Border Background="#003B46" CornerRadius="10">
+
+            <StackPanel Orientation="Horizontal" Margin="15 15">
+
+                <DockPanel LastChildFill ="False" Margin="0 10">
+                    
+                    <!--Потвердить-->
+                    <Button DockPanel.Dock="Top" Content="Потвердить" Style="{StaticResource Button}"
+                            Click="Access_Click"/>
+                    
+                    <!--Отменить-->
+                    <Button DockPanel.Dock="Bottom" Content="Отменить" Style="{StaticResource Button}"
+                            Click="Cancel_Click"/>
+                </DockPanel>
+
+                <Rectangle VerticalAlignment="Stretch" Width="1" Margin="20 0 20 0" Stroke="#ffff" />
+
+                <Border CornerRadius="8" Width="50" Height="25"
+                        HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#0C7F95" Offset="0"/>
+                            <GradientStop Color="#66A5AD" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    
+                    <!--Номер Авиалинии-->
+                    <TextBlock Text="{Binding Number}"
+                               Foreground="#ffffff"
+                               FontSize=" 15" FontWeight="SemiBold"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+                <StackPanel Orientation="Vertical" Margin="10 20">
+                    
+                    <!--Время и дата отбытия-->
+                    <TextBlock Text="{Binding DatetimeDeparture}"
+                               Foreground="#ffffff"
+                               FontSize="25" FontWeight="SemiBold"/>
+                    <!--Город отбытия-->
+                    <TextBlock Text="{Binding CityDeparture}"
+                               Foreground="#ffffff"
+                               FontSize="16" FontWeight="SemiBold"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="10 20">
+
+                    <!--Время и дата прибытия-->
+                    <TextBlock Text="{Binding DatetimeArrive}"
+                               Foreground="#ffffff"
+                               FontSize="25" FontWeight="SemiBold"/>
+
+                    <!--Город прибытия-->
+                    <TextBlock Text="{Binding CityArrive}"
+                               Foreground="#ffffff"
+                               FontSize="16" FontWeight="SemiBold"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+
+            </StackPanel>
+            
+        </Border>  
     </Grid>
 </UserControl>

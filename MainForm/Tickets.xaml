@@ -6,12 +6,9 @@
              xmlns:local="clr-namespace:MainForm"
              mc:Ignorable="d" 
              d:DesignHeight="140" d:DesignWidth="800">
-    <Grid>
+    <Grid Width="840" Height="140">
         <Border CornerRadius="10" Background="#003B46" BorderThickness="0" BorderBrush="Transparent">
-
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
-            </Border.Effect>
+            
         </Border>
 
         <StackPanel Orientation="Horizontal" Margin="20 10">

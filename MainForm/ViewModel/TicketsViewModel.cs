@@ -90,6 +90,8 @@ namespace MainForm.ViewModel
 
                             Tickets tickets = new Tickets(_user);
 
+                            tickets.Margin = new Thickness(10, 20, 10, 20);
+
                             tickets.Number = airLine.Id;
                             tickets.TimeDeparture = airLine.DatetimeDeparture.ToString()!;
                             tickets.TimeArrive = airLine.DatetimeArrival.ToString()!;

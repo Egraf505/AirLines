@@ -63,14 +63,47 @@
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Margin" Value="25 0 0 0"/>
         </Style>
+
+        <Style x:Key="AdditionalButtons" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5 0 5 0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0" BorderBrush="Transparent">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#005767"/>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
     </Window.Resources>
-    
+
     <Grid Background="Transparent" MouseDown="Grid_MouseDown">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.20*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
 
         <Border Grid.Column="0" CornerRadius="10 0 0 10">
             <Border.Background>
@@ -147,9 +180,24 @@
             </Border.Background>
         </Border>
 
-        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" 
-               Content="{Binding CurrentPage}">
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.05*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        </Frame>
+            <DockPanel Grid.Row="0" LastChildFill="False" Margin="0 0 20 0">
+                <Button DockPanel.Dock="Right" Content="x" Style="{StaticResource AdditionalButtons}"
+                        Click="Close_Click"/>
+                <Button DockPanel.Dock="Right" Content="_" Style="{StaticResource AdditionalButtons}"
+                        Click="Min_Click"/>
+            </DockPanel>
+            <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" 
+                   Content="{Binding CurrentPage}">
+
+            </Frame>
+
+        </Grid>
+        
     </Grid>
 </Window>

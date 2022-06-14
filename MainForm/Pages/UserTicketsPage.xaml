@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MainForm.Pages"
+      xmlns:local="clr-namespace:MainForm.Pages" xmlns:mainform="clr-namespace:MainForm"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UserTicketsPage">
@@ -13,18 +13,50 @@
             <RowDefinition Height="0.25*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock Grid.Row="0" Text="Ваши билеты" 
-                   Foreground="#ffffff"
-                   HorizontalAlignment="Left" VerticalAlignment="Center"
-                   FontWeight="SemiBold" FontSize="32"
-                   Margin="170 0 0 0"/>
+
+        <DockPanel LastChildFill="False">
+            <TextBlock Grid.Row="0" Text="Ваши билеты" 
+                       Foreground="#ffffff"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       FontWeight="SemiBold" FontSize="32"
+                       Margin="170 0 0 0"/>
+
+            <Button DockPanel.Dock="Right"
+                    Width="150" Height="40" Margin="0 0 20 0"
+                    Foreground="#ffffff"
+                    FontSize="20" FontWeight="SemiBold"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Content="Обновить"
+                    Command="{Binding OnUpdate}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                            <Border.Background>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="#0C7F95" Offset="0"/>
+                                    <GradientStop Color="#4D888F" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </DockPanel>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Orientation="Vertical"
                         Margin="100 0 100 0">
-                <ItemsControl ItemsSource="{Binding UserTickets}">
-                    
+                <ItemsControl ItemsSource="{Binding UserTickets}" >
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>

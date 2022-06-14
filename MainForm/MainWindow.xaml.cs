@@ -55,5 +55,15 @@ namespace MainForm
                 textBox.Text = textBox.Tag.ToString();
             }
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Min_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }
