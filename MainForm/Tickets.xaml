@@ -35,7 +35,7 @@
                     <!--Время отбытия-->
                     <TextBlock Text="{Binding TimeDeparture}" 
                                Background="Transparent" Foreground="#ffffff"
-                               FontSize="27" FontWeight="SemiBold"
+                               FontSize="26" FontWeight="SemiBold"
                                Margin="15 10 0 10"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     
@@ -55,14 +55,14 @@
 
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="50 0 0 0">
+            <StackPanel Orientation="Vertical" Margin="40 0 0 0">
 
                 <StackPanel Orientation="Horizontal">
                     <!--Время прибития-->
                     <TextBlock Text="{Binding TimeArrive}" 
                                Background="Transparent" Foreground="#ffffff"
-                               FontSize="27" FontWeight="SemiBold"
-                               Margin="15 10 0 10"
+                               FontSize="26" FontWeight="SemiBold"
+                               Margin="10 10 0 10"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                     <!--Дата прибитие-->
@@ -81,6 +81,8 @@
 
             </StackPanel>
 
+            <Rectangle VerticalAlignment="Stretch" Width="1" Margin="10 0 5 0" Stroke="#ffff" />
+
             <StackPanel Orientation="Vertical" Margin="30 0 0 0">
                 
                 <Button Content="Забронировать" Foreground="#ffffff" 
@@ -89,7 +91,7 @@
                         Click="Button_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="8" Width="160" Height="25">
+                            <Border CornerRadius="8" Width="150" Height="25">
                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
                                 <Border.Background>
                                     <LinearGradientBrush>
@@ -98,6 +100,13 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                             </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                            
                         </ControlTemplate>
                     </Button.Template>
                 </Button>

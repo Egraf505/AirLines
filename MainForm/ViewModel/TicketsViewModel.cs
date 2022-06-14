@@ -118,7 +118,8 @@ namespace MainForm.ViewModel
         public TicketsViewModel(User user)
         {
             _user = user;
-            _airLines = new ObservableCollection<Tickets>();           
+            _airLines = new ObservableCollection<Tickets>();  
+            _date = DateTime.Now;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
