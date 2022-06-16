@@ -18,7 +18,6 @@ namespace MainForm.ViewModel
     {
         private Page _airTicketsPage;
         private Page _userTicketsPage;
-        private Page _exitPage;
 
         private User _user;
         public User User
@@ -77,7 +76,7 @@ namespace MainForm.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    CurrentPage = _exitPage;
+                    Application.Current.Shutdown();
                 });
             }
         }
@@ -94,8 +93,7 @@ namespace MainForm.ViewModel
                 }
 
                 _airTicketsPage = new AirTicketsPage(_user!);
-                _userTicketsPage = new UserTicketsPage(_user!);
-                _exitPage = new ExitPage(_user!);
+                _userTicketsPage = new UserTicketsPage(_user!);               
             }
         }
 

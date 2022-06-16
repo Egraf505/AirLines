@@ -87,23 +87,6 @@
                          GotFocus="TextBox_GotFocus"
                          LostFocus="TextBox_LostFocus"/>
 
-
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-
-                    <CheckBox 
-                              VerticalAlignment="Center" HorizontalAlignment="Center"
-                              Content="Запомнить меня"
-                              FontSize="13" Foreground="#FFFFFF"
-                              Margin="0 20 0 0"
-                        IsChecked="{Binding RememberUser}">
-                        <CheckBox.LayoutTransform>
-                            <ScaleTransform ScaleX="2" ScaleY="2.1" />
-                        </CheckBox.LayoutTransform>
-                    </CheckBox>
-
-                </StackPanel>
-
-
                 <Button Style="{StaticResource EnterButtun}" Content="Войти" Command="{Binding OnLogIn}"/>
 
 

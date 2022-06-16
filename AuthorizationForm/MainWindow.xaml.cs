@@ -14,27 +14,14 @@ namespace AuthorizationForm
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {      
+    {
+        public MainWindow(bool flag) :base()
+        {
+            File.Delete("config.json");            
+        }
 
         public MainWindow()
-        {
-            ConfigUser? currentUser = File.Exists("config.json") ? JsonConvert.DeserializeObject<ConfigUser>(File.ReadAllText("config.json")) : null;
-
-            if (currentUser != null)
-            {
-                using (AirFligthsContext context = new AirFligthsContext())
-                {
-                    User user = context.Users.FirstOrDefault(x => x.Login == currentUser.l_name && x.Password == currentUser.p_name)!;
-
-                    if (user != null)
-                    {
-                        MainForm.MainWindow mainWindow = new(user.Login, user.Password);                        
-                        Application.Current.MainWindow.Close();
-                        mainWindow.Show();
-                    }
-                }
-            }
-
+        {            
             InitializeComponent();
         }
 
