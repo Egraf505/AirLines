@@ -18,6 +18,7 @@ namespace MainForm.ViewModel
     {
         private Page _airTicketsPage;
         private Page _userTicketsPage;
+        private Page _historyOfTicektPage;
 
         private User _user;
         public User User
@@ -70,6 +71,17 @@ namespace MainForm.ViewModel
             }
         }
 
+        public ICommand ToHistoryOfTicketFrame
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    CurrentPage = _historyOfTicektPage;
+                });
+            }
+        }
+
         public ICommand ToExitFrame
         {
             get
@@ -93,7 +105,8 @@ namespace MainForm.ViewModel
                 }
 
                 _airTicketsPage = new AirTicketsPage(_user!);
-                _userTicketsPage = new UserTicketsPage(_user!);               
+                _userTicketsPage = new UserTicketsPage(_user!);
+                _historyOfTicektPage = new HistoryOfTicketPage(_user!);
             }
         }
 

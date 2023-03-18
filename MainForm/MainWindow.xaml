@@ -161,6 +161,13 @@
                         </StackPanel>
                     </Button>
 
+                    <Button DockPanel.Dock="Top" Style="{StaticResource ButtonMenu}"
+                            Command="{Binding ToUserTicketFrame}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="История билетов" Style="{StaticResource TextMenu}"/>
+                        </StackPanel>
+                    </Button>
+
                     <Button DockPanel.Dock="Bottom" Style="{StaticResource ButtonMenu}"
                             Command="{Binding ToExitFrame}">
                         <StackPanel Orientation="Horizontal">

@@ -99,9 +99,9 @@
             
         </Style>
 
-        <Image x:Key="SearcArrow" Source="E:\IDE\Project\AirLines\MainForm\Resources\right-arrow.png" />
+        <Image x:Key="SearcArrow" Source="/Resources/right-arrow.png"/>
 
-        <Image x:Key="Transfer" Source="E:\IDE\Project\AirLines\MainForm\Resources\transfer.png" Width="40" Height="40"/>
+        <Image x:Key="Transfer"  Width="40" Height="40" Source="/Resources/transfer.png"/>
     </Page.Resources>
 
     <Grid>
