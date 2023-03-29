@@ -21,7 +21,7 @@ namespace MainForm.Pages
     /// </summary>
     public partial class HistoryOfTicketPage : Page
     {
-        private User user;
+        private User _user;
 
         public HistoryOfTicketPage()
         {
@@ -29,8 +29,9 @@ namespace MainForm.Pages
         }
 
         public HistoryOfTicketPage(User user)
+            :base()
         {
-            this.user = user;
+            _user = user;
         }
     }
 }

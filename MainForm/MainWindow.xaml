@@ -30,7 +30,7 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Foreground" Value="#ffffff"/>
-                    <Setter Property="Background" Value="#66A5AD"/>
+                    <Setter Property="Background" Value="#3282B8"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
@@ -43,7 +43,7 @@
                 </Trigger>
                 <Trigger Property="IsFocused" Value="True">
                     <Setter Property="Foreground" Value="#ffffff"/>
-                    <Setter Property="Background" Value="#66A5AD"/>
+                    <Setter Property="Background" Value="#3282B8"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
@@ -108,8 +108,8 @@
         <Border Grid.Column="0" CornerRadius="10 0 0 10">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#003B46" Offset="0"/>
-                    <GradientStop Color="#096F82" Offset="1"/>
+                    <GradientStop Color="#574B90" Offset="0"/>
+                    <GradientStop Color="#303A52" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
 
@@ -120,8 +120,8 @@
                     <Border CornerRadius="10" Width="40" Height="40">
                         <Border.Background>
                             <LinearGradientBrush >
-                                <GradientStop Color="#0C7F95" Offset="0"/>
-                                <GradientStop Color="#66A5AD" Offset="1"/>
+                                <GradientStop Color="#574B90" Offset="0"/>
+                                <GradientStop Color="#9E579D" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
 
@@ -162,7 +162,7 @@
                     </Button>
 
                     <Button DockPanel.Dock="Top" Style="{StaticResource ButtonMenu}"
-                            Command="{Binding ToUserTicketFrame}">
+                            Command="{Binding ToHistoryOfTicketFrame}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="История билетов" Style="{StaticResource TextMenu}"/>
                         </StackPanel>
@@ -181,8 +181,8 @@
         <Border Grid.Column="1" CornerRadius="0 10 10 0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#66A5AD" Offset="0"/>
-                    <GradientStop Color="#ffffff" Offset="1.5"/>
+                    <GradientStop Color="#574B90" Offset="0"/>
+                    <GradientStop Color="#9E579D" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>

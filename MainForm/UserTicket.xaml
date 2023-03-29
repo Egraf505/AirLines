@@ -24,8 +24,8 @@
                                               VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
                             <Border.Background>
                                 <LinearGradientBrush>
-                                    <GradientStop Color="#0C7F95" Offset="0"/>
-                                    <GradientStop Color="#66A5AD" Offset="1"/>
+                                    <GradientStop Color="#574B90" Offset="0"/>
+                                    <GradientStop Color="#9E579D" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>
@@ -50,8 +50,8 @@
                                               VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
                                     <Border.Background>
                                         <LinearGradientBrush>
-                                            <GradientStop Color="#085E6F" Offset="0"/>
-                                            <GradientStop Color="#49757A" Offset="1"/>
+                                            <GradientStop Color="#574B90" Offset="0"/>
+                                            <GradientStop Color="#9E579D" Offset="1"/>
                                         </LinearGradientBrush>
                                     </Border.Background>
                                 </Border>
@@ -72,7 +72,7 @@
     </UserControl.Resources>
 
     <Grid Width="770" Height="140">
-        <Border Background="#003B46" CornerRadius="10">
+        <Border Background="#303A52" CornerRadius="10">
 
             <StackPanel Orientation="Horizontal" Margin="15 15">
 
@@ -93,8 +93,8 @@
                         HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Border.Background>
                         <LinearGradientBrush>
-                            <GradientStop Color="#0C7F95" Offset="0"/>
-                            <GradientStop Color="#66A5AD" Offset="1"/>
+                            <GradientStop Color="#574B90" Offset="0"/>
+                            <GradientStop Color="#9E579D" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
                     

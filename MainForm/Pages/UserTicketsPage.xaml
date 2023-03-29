@@ -35,8 +35,8 @@
                                               VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
                             <Border.Background>
                                 <LinearGradientBrush>
-                                    <GradientStop Color="#0C7F95" Offset="0"/>
-                                    <GradientStop Color="#4D888F" Offset="1"/>
+                                    <GradientStop Color="#574B90" Offset="0"/>
+                                    <GradientStop Color="#9E579D" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>

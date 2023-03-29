@@ -9,6 +9,6 @@
       Title="HistoryOfTicketPage">
 
     <Grid>
-        
+        <TextBlock Text="История билетов" FontSize="20" Foreground="White"></TextBlock>
     </Grid>
 </Page>

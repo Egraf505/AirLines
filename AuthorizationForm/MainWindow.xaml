@@ -55,8 +55,8 @@
                 MouseLeftButtonDown="Border_MouseLeftButtonDown">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#66A5AD" Offset="0"/>
-                    <GradientStop Color="#ffffff" Offset="1.5"/>
+                    <GradientStop Color="#574B90" Offset="0"/>
+                    <GradientStop Color="#9E579D" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
@@ -75,7 +75,7 @@
             <Button Height="30" Width="30" Style="{StaticResource ClosingMinimazedButtun}" Content="x" Click="Close_Click"/>
         </StackPanel>
 
-        <Border x:Name="LoginBorder" Grid.Column="1" Grid.Row="1" Background="#003B46" CornerRadius="10" Visibility="Visible">
+        <Border x:Name="LoginBorder" Grid.Column="1" Grid.Row="1" Background="#303A52" CornerRadius="10" Visibility="Visible">
             <StackPanel>
                 <TextBox x:Name="LoginBox" Tag="Логин" Text="{Binding Login}"
                          GotFocus="TextBox_GotFocus"
@@ -102,7 +102,7 @@
             </StackPanel>
         </Border>
 
-        <Border x:Name="RegistrationBorder" Grid.Column="1" Grid.Row="1" Background="#003B46" CornerRadius="10" Visibility="Collapsed">
+        <Border x:Name="RegistrationBorder" Grid.Column="1" Grid.Row="1" Background="#303A52" CornerRadius="10" Visibility="Collapsed">
             <StackPanel Orientation="Vertical">
                 <TextBox x:Name="LoginBoxR" Style="{StaticResource registrationTexBox}" Tag="Логин"
                          Text="{Binding LoginR}"

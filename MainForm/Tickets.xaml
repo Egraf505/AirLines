@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="140" d:DesignWidth="800">
     <Grid Width="840" Height="140">
-        <Border CornerRadius="10" Background="#003B46" BorderThickness="0" BorderBrush="Transparent">
+        <Border CornerRadius="10" Background="#303A52" BorderThickness="0" BorderBrush="Transparent">
             
         </Border>
 
@@ -16,8 +16,8 @@
             <Border CornerRadius="8" Width="50" Height="25" VerticalAlignment="Top">
                 <Border.Background>
                     <LinearGradientBrush>
-                        <GradientStop Color="#0C7F95" Offset="0"/>
-                        <GradientStop Color="#66A5AD" Offset="1"/>
+                        <GradientStop Color="#574B90" Offset="0"/>
+                        <GradientStop Color="#9E579D" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
                 
@@ -95,8 +95,8 @@
                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
                                 <Border.Background>
                                     <LinearGradientBrush>
-                                        <GradientStop Color="#0C7F95" Offset="0"/>
-                                        <GradientStop Color="#66A5AD" Offset="1"/>
+                                        <GradientStop Color="#574B90" Offset="0"/>
+                                        <GradientStop Color="#9E579D" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Border.Background>
                             </Border>
