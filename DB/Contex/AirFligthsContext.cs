@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DB.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -9,7 +10,7 @@ namespace DB
     {
         public AirFligthsContext()
         {
-            
+            Database.EnsureCreated();
         }
 
         public AirFligthsContext(DbContextOptions<AirFligthsContext> options)
@@ -23,6 +24,7 @@ namespace DB
         public virtual DbSet<Plan> Plans { get; set; } = null!;
         public virtual DbSet<Ticket> Tickets { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<History> Histories { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

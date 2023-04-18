@@ -1,4 +1,5 @@
 ﻿using DB;
+using DB.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,6 +84,22 @@ namespace MainForm
 
         private void Access_Click(object sender, RoutedEventArgs e)
         {
+            using (AirFligthsContext context = new AirFligthsContext())
+            {
+                History history = new History()
+                {
+                    UserId = _user.Id,
+                    TitleOfTicket = Number.ToString(),
+                    DateArrive = DatetimeArrive,
+                    DateDeparture = DatetimeDeparture,
+                    CityArrive = CityArrive,
+                    CityDeparture = CityDeparture
+                };
+
+                context.Histories.Add(history);
+                context.SaveChanges();
+            }
+
             MessageBox.Show("Дальнейшая обработка");
         }
 

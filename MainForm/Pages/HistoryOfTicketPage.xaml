@@ -9,6 +9,55 @@
       Title="HistoryOfTicketPage">
 
     <Grid>
-        <TextBlock Text="История билетов" FontSize="20" Foreground="White"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" LastChildFill="False">
+
+            <Button DockPanel.Dock="Right" Grid.Row="0"
+                Foreground="#ffffff"
+                FontSize="20"
+                Width="150" Height="40" Margin="0 0 20 0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Обновить" Click="Button_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                            <Border.Background>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="#574B90" Offset="0"/>
+                                    <GradientStop Color="#9E579D" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <TextBlock DockPanel.Dock="Left" Text="История билетов"                       
+                   Grid.Row="0"
+                       FontWeight="SemiBold" FontSize="32"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Foreground="White"
+                       Margin="40 0 0 0"/>
+        </DockPanel>
+
+
+        <StackPanel Grid.Row="1" x:Name="HistoriesStackP">
+
+        </StackPanel>
+
     </Grid>
 </Page>

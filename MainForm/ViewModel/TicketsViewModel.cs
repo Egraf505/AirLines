@@ -110,7 +110,6 @@ namespace MainForm.ViewModel
 
         private void AccessClickHandler(object sender, RoutedEventArgs e)
         {
-
             ShowAirlines();
             MessageBox.Show("Вы забронировали");
         }

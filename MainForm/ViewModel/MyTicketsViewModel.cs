@@ -47,8 +47,8 @@ namespace MainForm.ViewModel
                     userTicket.Margin = new Thickness(10, 20, 10, 20);
 
                     userTicket.Number = airline.Id;
-                    userTicket.DatetimeDeparture = airline.DatetimeDeparture.ToString()!;
-                    userTicket.DatetimeArrive = airline.DatetimeArrival.ToString()!;
+                    userTicket.DatetimeDeparture = airline.DatetimeDeparture!.Value.ToShortDateString();
+                    userTicket.DatetimeArrive = airline.DatetimeArrival!.Value.ToShortDateString();
                     userTicket.CityArrive = context.Cities.FirstOrDefault(x => x.Id == airline.CityArrival)!.Tittle;
                     userTicket.CityDeparture = context.Cities.FirstOrDefault(x => x.Id == airline.CityDeparture)!.Tittle;
                     userTicket.AddHandler(UserTicket.CancelEvent, new RoutedEventHandler(Cancelhandler));

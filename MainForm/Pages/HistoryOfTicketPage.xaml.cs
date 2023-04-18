@@ -1,4 +1,5 @@
 ﻿using DB;
+using DB.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +22,36 @@ namespace MainForm.Pages
     /// </summary>
     public partial class HistoryOfTicketPage : Page
     {
-        private User _user;
-
-        public HistoryOfTicketPage()
-        {
-            InitializeComponent();
-        }
+        private readonly User _user;
 
         public HistoryOfTicketPage(User user)
-            :base()
         {
+            InitializeComponent();
             _user = user;
+        }
+
+        private void ShowHistory()
+        {
+            HistoriesStackP.Children.Clear();
+
+            List<History> histories = new List<History>();
+
+            using (AirFligthsContext context = new AirFligthsContext())
+            {
+                histories.AddRange(context.Histories
+                    .Where(x => x.UserId == _user.Id)
+                    .ToList());
+            }
+
+            foreach (var history in histories)
+            {
+                HistoriesStackP.Children.Add(new TicketOfHistory(history.TitleOfTicket, history.DateArrive, history.CityArrive, history.DateDeparture, history.CityDeparture));
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowHistory();
         }
     }
 }
