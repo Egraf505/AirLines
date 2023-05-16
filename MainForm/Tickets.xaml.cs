@@ -79,6 +79,8 @@ namespace MainForm
             remove { RemoveHandler(AccesButtonEvent, value); }
         }
 
+        public string Dinner { get; set; } = null!;
+        public string TypePfPlan { get; set; } = null!;
 
         public static readonly RoutedEvent AccesButtonEvent = EventManager.RegisterRoutedEvent("AccesClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Tickets));
 
@@ -94,6 +96,14 @@ namespace MainForm
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int count = int.Parse(CountTickets.Split()[1]);
+
+            if (count == 0)
+            {
+                MessageBox.Show("Билетов больше нет");
+                return;
+            }
+
             using(AirFligthsContext context = new AirFligthsContext())
             {
                 Ticket ticket = context.Tickets.FirstOrDefault(x => x.IdAirLines == Number && x.IdUser == null)!;
@@ -102,6 +112,8 @@ namespace MainForm
                     ticket.IdUserNavigation = _user;
                 }
                 context.SaveChanges();
+
+                MessageBox.Show("Вы забронировали");
             }
             RaiseEvent(new RoutedEventArgs(Tickets.AccesButtonEvent));
         }

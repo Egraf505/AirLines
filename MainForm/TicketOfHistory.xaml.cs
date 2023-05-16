@@ -20,7 +20,7 @@ namespace MainForm
     /// </summary>
     public partial class TicketOfHistory : UserControl
     {
-        public TicketOfHistory(string title, string datearrive, string cityarrive, string datedeparture, string citydeparture)
+        public TicketOfHistory(string title, string datearrive, string cityarrive, string datedeparture, string citydeparture, string dinner, string typeOfPlan)
         {
             InitializeComponent();
 
@@ -30,6 +30,9 @@ namespace MainForm
 
             DateArrive.Text = datearrive;
             CityArriveTB.Text = cityarrive;
+
+            Dinner.Text = dinner;
+            TypeOfPlan.Text = "Тип самолета: " + typeOfPlan;
         }
     }
 }

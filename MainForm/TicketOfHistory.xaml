@@ -46,6 +46,24 @@
 
                     </StackPanel>
 
+                    <TextBlock x:Name="Dinner"
+                                   Margin="20 0 0 0"
+                                   DockPanel.Dock="Left"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="#ffffff"
+                                   FontSize="20" FontWeight="SemiBold"
+                                   Text="С обедом"/>
+
+                    <TextBlock x:Name="TypeOfPlan"
+                                   Margin="20 0 0 0"
+                                   DockPanel.Dock="Left"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="#ffffff"
+                                   FontSize="20" FontWeight="SemiBold"
+                                   Text="F"/>
+
                     <StackPanel DockPanel.Dock="Right"
                                 Orientation="Vertical"
                                 Margin="0 20 20 0">

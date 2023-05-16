@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DB.Model;
+using System;
 using System.Collections.Generic;
 
 namespace DB

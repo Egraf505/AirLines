@@ -45,7 +45,7 @@ namespace MainForm.Pages
 
             foreach (var history in histories)
             {
-                HistoriesStackP.Children.Add(new TicketOfHistory(history.TitleOfTicket, history.DateArrive, history.CityArrive, history.DateDeparture, history.CityDeparture));
+                HistoriesStackP.Children.Add(new TicketOfHistory(history.TitleOfTicket, history.DateArrive, history.CityArrive, history.DateDeparture, history.CityDeparture, history.Dinner, history.TypeOfPlan));
             }
         }
 

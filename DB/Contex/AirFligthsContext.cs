@@ -26,6 +26,9 @@ namespace DB
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<History> Histories { get; set; } = null!;
 
+        public virtual DbSet<TypeOfPlan> TypeOfPlans { get; set; } = null!;
+        public virtual DbSet<Dinner> Dinners { get; set; } = null!;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

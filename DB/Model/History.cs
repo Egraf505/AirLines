@@ -15,5 +15,7 @@ namespace DB.Model
         public string DateDeparture { get; set; } = null!;
         public string CityArrive { get; set; } = null!;
         public string CityDeparture { get; set; } = null!;
+        public string Dinner { get; set; } = null!;
+        public string TypeOfPlan { get; set; } = null!;
     }
 }

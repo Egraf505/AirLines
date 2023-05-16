@@ -73,6 +73,9 @@ namespace MainForm
             remove { RemoveHandler(CancelEvent, value); }
         }
 
+        public string Dinner { get; set; } = null!;
+        public string TypeOfPlan { get; set; } = null!;
+
         public static readonly RoutedEvent AccesEvent = EventManager.RegisterRoutedEvent("AccesEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UserTicket));
         public static readonly RoutedEvent CancelEvent = EventManager.RegisterRoutedEvent("CancelEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UserTicket));
 
@@ -93,7 +96,9 @@ namespace MainForm
                     DateArrive = DatetimeArrive,
                     DateDeparture = DatetimeDeparture,
                     CityArrive = CityArrive,
-                    CityDeparture = CityDeparture
+                    CityDeparture = CityDeparture,
+                    Dinner = Dinner,
+                    TypeOfPlan = TypeOfPlan
                 };
 
                 context.Histories.Add(history);
