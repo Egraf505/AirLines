@@ -119,8 +119,8 @@ namespace MainForm.ViewModel
                         var dinner = SelectedDinner;
 
                         var airLines = context.AirLines.Include(x => x.Tickets).Where(
-                            x => x.CityArrivalNavigation == incity && x.CityDepartureNavigation == outcity
-                            && x.DatetimeDeparture == departure && x.DatetimeArrival == arrival
+                            x => x.CityArrival == incity.Id && x.CityDeparture == outcity.Id
+                            && x.DatetimeDeparture.Value.Date.ToUniversalTime() == departure.Date.ToUniversalTime() && x.DatetimeArrival.Value.Date.ToUniversalTime() == arrival.Date.ToUniversalTime()
                             ).ToList();
 
                         if (airLines != null)
