@@ -9,7 +9,7 @@ namespace DB
     {
         public AirFligthsContext()
         {
-            
+            Database.EnsureCreated();
         }
 
         public AirFligthsContext(DbContextOptions<AirFligthsContext> options)
@@ -28,7 +28,8 @@ namespace DB
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=AirFligths;Trusted_Connection=True;");
+                //optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=AirFligths;Trusted_Connection=True;");
+                optionsBuilder.UseSqlite("Data Source=airlights.db");
             }
         }
 
