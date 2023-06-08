@@ -33,9 +33,7 @@ namespace DB
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=AirFligths;Trusted_Connection=True;");
-                //optionsBuilder.UseSqlite("Data Source=airlights.db");
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=airlightsdb;Username=postgres;Password=EfgraF_0256");
+                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=AirFligths;Trusted_Connection=True;");
             }
         }
 
