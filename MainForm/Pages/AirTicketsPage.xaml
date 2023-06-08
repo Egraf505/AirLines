@@ -114,43 +114,90 @@
                 BorderThickness="0.5" BorderBrush="#0C7F95"
                 Margin="50 20 50 0">
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBox Width="240" Height="40" Text="{Binding CityOupout}"
+            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBox Width="240" Height="40" Text="{Binding CityOupout}"
                          Tag="Город отбития"
                          GotFocus="TextBox_GotFocus"
                          LostFocus="TextBox_LostFocus"/>
 
-                <Button Width="40" Height="40" Content="{StaticResource Transfer}"
+                    <Button Width="40" Height="40" Content="{StaticResource Transfer}"
                         Background="Transparent"  Foreground="#FFFFFF"
                         BorderThickness="0" BorderBrush="Transparent"
                         Command="{Binding OnTransfer}">
-                    <Button.Template>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <ContentPresenter/>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <ContentPresenter/>
 
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
 
 
-                <TextBox Width="240" Height="40" Text="{Binding CityInput}"
+                    <TextBox Width="240" Height="40" Text="{Binding CityInput}"
                          Tag="Город прибития"
                          GotFocus="TextBox_GotFocus"
                          LostFocus="TextBox_LostFocus"/>
 
-                <Viewbox Width="150" Height="40">
-                    <DatePicker SelectedDate="{Binding Date}"/>
-                </Viewbox>
-
-                <Button Style="{StaticResource SearchButtin}" Content="{StaticResource SearcArrow}"
+                    <Button Style="{StaticResource SearchButtin}" Content="{StaticResource SearcArrow}"
                         Command="{Binding OnSearch}"/>
 
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <TextBlock
+                        FontSize="15"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold" Foreground="#ffffff"
+                        Text="Дата отбытия"/>
+
+                    <Viewbox Width="150" Height="40">
+                        <DatePicker SelectedDate="{Binding DateOutput}"/>
+                    </Viewbox>
+
+                    <TextBlock
+                        FontSize="15"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold" Foreground="#ffffff"
+                        Text="Дата прибытия"/>
+
+                    <Viewbox Width="150" Height="40">
+                        <DatePicker SelectedDate="{Binding DateInput}"/>
+                    </Viewbox>
+
+                    <TextBlock
+                        FontSize="15"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold" Foreground="#ffffff"
+                        Text="Тип самолета"/>
+                    <ComboBox
+                              Height="30"
+                              Width="auto"
+                              ItemsSource="{Binding Path=TypeOfPlans}"
+                              SelectedItem="{Binding Path=SelectedTypeOfPlan}"
+                              DisplayMemberPath="Title"/>
+
+                    <TextBlock
+                        FontSize="15"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold" Foreground="#ffffff"
+                        Text="Питание"/>
+                    <ComboBox
+                              Height="30"
+                              Width="auto"
+                              ItemsSource="{Binding Path=Dinners}"
+                              SelectedItem="{Binding Path=SelectedDinner}"
+                              DisplayMemberPath="Title"/>
+
+                </StackPanel>
             </StackPanel>
         </Border>
 

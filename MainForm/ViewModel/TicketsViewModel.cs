@@ -1,5 +1,7 @@
 ﻿using DB;
+using DB.Model;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,11 +40,46 @@ namespace MainForm.ViewModel
             set { _cityInput = value; OnPropertyChanged(); }
         }
 
-        private DateTime _date;
-        public DateTime Date
+        private DateTime _dateInput;
+        public DateTime DateInput
         {
-            get { return _date; }
-            set { _date = value; OnPropertyChanged(); }
+            get { return _dateInput; }
+            set { _dateInput = value; OnPropertyChanged(); }
+        }
+
+        private DateTime _dateOutput;
+        public DateTime DateOutput
+        {
+            get { return _dateOutput; }
+            set { _dateOutput = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<TypeOfPlan> _typeOfPlans; 
+        public ObservableCollection<TypeOfPlan> TypeOfPlans
+        {
+            get { return _typeOfPlans; }
+            set { _typeOfPlans = value; OnPropertyChanged(); }
+        }
+
+        private TypeOfPlan _selectedTypeOfPlan;
+        public TypeOfPlan SelectedTypeOfPlan
+        {
+            get { return _selectedTypeOfPlan; }
+            set { _selectedTypeOfPlan = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<Dinner> _dinners;
+        public ObservableCollection<Dinner> Dinners
+        {
+            get { return _dinners; }
+            set { _dinners = value; OnPropertyChanged(); }
+        }
+
+        private Dinner _selectedDinner;
+        public Dinner SelectedDinner
+        {
+            get { return _selectedDinner; }
+            set { _selectedDinner = value; OnPropertyChanged(); }
         }
 
         public ICommand OnTransfer
@@ -66,60 +103,84 @@ namespace MainForm.ViewModel
 
         private void ShowAirlines()
         {
-            if (_cityInput != null && _cityOupout != null)
+            try
             {
-                using (AirFligthsContext context = new AirFligthsContext())
+                if (_cityInput != null && _cityOupout != null)
                 {
-                    City incity = context.Cities.FirstOrDefault(x => x.Tittle == _cityInput)!;
-                    City outcity = context.Cities.FirstOrDefault(x => x.Tittle == _cityOupout)!;
-
-                    DateTime departure = Date;
-                    DateTime arrival = departure;
-                    arrival = arrival.AddDays(1);
-
-                    List<AirLine> airLines = new List<AirLine>(context.AirLines.Where(x => x.CityArrivalNavigation == incity && x.CityDepartureNavigation == outcity && x.DatetimeDeparture == departure && x.DatetimeArrival == arrival));
-
-                    if (airLines != null)
+                    using (AirFligthsContext context = new AirFligthsContext())
                     {
-                        _airLines.Clear();
-                        foreach (AirLine airLine in airLines)
+                        City incity = context.Cities.FirstOrDefault(x => x.Tittle == _cityInput)!;
+                        City outcity = context.Cities.FirstOrDefault(x => x.Tittle == _cityOupout)!;
+
+                        DateTime departure = DateOutput;
+                        DateTime arrival = DateInput;
+
+                        var typeOfPlan = SelectedTypeOfPlan;
+                        var dinner = SelectedDinner;
+
+                        var airLines = context.AirLines.Include(x => x.Tickets).Where(
+                            x => x.CityArrivalNavigation == incity && x.CityDepartureNavigation == outcity
+                            && x.DatetimeDeparture == departure && x.DatetimeArrival == arrival
+                            ).ToList();
+
+                        if (airLines != null)
                         {
-                            int ticketList = context.Tickets.Count(x => x.IdAirLinesNavigation == airLine && x.IdUser == null);
-                            City cityDeparture = context.Cities.FirstOrDefault(x => x.Id == airLine.CityDeparture)!;
-                            City cityArrive = context.Cities.FirstOrDefault(x => x.Id == airLine.CityArrival)!;
+                            _airLines.Clear();
+                            foreach (AirLine airLine in airLines)
+                            {
+                                var ticketList = context.Tickets.Where(
+                                    x => x.IdAirLines == airLine.Id
+                                    && x.IdUserNavigation == null
+                                    && x.Dinner == SelectedDinner
+                                    && x.TypeOfPlan == SelectedTypeOfPlan).Select(x => new { x.Id, x.Dinner, x.TypeOfPlan}).ToList();
 
-                            Tickets tickets = new Tickets(_user);
+                                City cityDeparture = context.Cities.FirstOrDefault(x => x.Id == airLine.CityDeparture)!;
+                                City cityArrive = context.Cities.FirstOrDefault(x => x.Id == airLine.CityArrival)!;
 
-                            tickets.Margin = new Thickness(10, 20, 10, 20);
+                                Tickets ticket = new Tickets(_user);
 
-                            tickets.Number = airLine.Id;
-                            tickets.TimeDeparture = airLine.DatetimeDeparture.ToString()!;
-                            tickets.TimeArrive = airLine.DatetimeArrival.ToString()!;
-                            tickets.CityDeparture = cityDeparture.Tittle;
-                            tickets.CityArrive = cityArrive.Tittle;
-                            tickets.CountTickets = $"Билетов: {ticketList}";
+                                ticket.Margin = new Thickness(10, 20, 10, 20);
 
-                            tickets.AddHandler(Tickets.AccesButtonEvent, new RoutedEventHandler(AccessClickHandler));
+                                ticket.Number = airLine.Id;
+                                ticket.TimeDeparture = airLine.DatetimeDeparture!.Value.Date.ToString();
+                                ticket.TimeArrive = airLine.DatetimeArrival!.Value.Date.ToString();
+                                ticket.CityDeparture = cityDeparture.Tittle;
+                                ticket.CityArrive = cityArrive.Tittle;
+                                ticket.CountTickets = $"Билетов: {ticketList.Count}";
+                                ticket.Dinner = ticketList.Select(x => x.Dinner.Title).FirstOrDefault();
+                                ticket.TypePfPlan = ticketList.Select(x => x.TypeOfPlan.Title).FirstOrDefault();
 
-                            _airLines.Add(tickets);
+                                ticket.AddHandler(Tickets.AccesButtonEvent, new RoutedEventHandler(AccessClickHandler)); 
+
+                                _airLines.Add(ticket);
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка получение билетов");
             }
         }
 
         private void AccessClickHandler(object sender, RoutedEventArgs e)
         {
-
             ShowAirlines();
-            MessageBox.Show("Вы забронировали");
         }
 
         public TicketsViewModel(User user)
         {
             _user = user;
             _airLines = new ObservableCollection<Tickets>();  
-            _date = DateTime.Now;
+            _dateInput = DateTime.Now;
+            _dateOutput = DateTime.Now.AddDays(2);
+
+            using (AirFligthsContext context = new AirFligthsContext())
+            {
+                _typeOfPlans = new ObservableCollection<TypeOfPlan>(context.TypeOfPlans.ToList());
+                _dinners = new ObservableCollection<Dinner>(context.Dinners.ToList());
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

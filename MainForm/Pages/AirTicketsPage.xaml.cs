@@ -25,7 +25,7 @@ namespace MainForm.Pages
         public AirTicketsPage(User user)
         {
             DataContext = new TicketsViewModel(user);
-            InitializeComponent();           
+            InitializeComponent();
         }        
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {

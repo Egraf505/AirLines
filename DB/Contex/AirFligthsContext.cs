@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DB.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -23,6 +24,10 @@ namespace DB
         public virtual DbSet<Plan> Plans { get; set; } = null!;
         public virtual DbSet<Ticket> Tickets { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<History> Histories { get; set; } = null!;
+
+        public virtual DbSet<TypeOfPlan> TypeOfPlans { get; set; } = null!;
+        public virtual DbSet<Dinner> Dinners { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

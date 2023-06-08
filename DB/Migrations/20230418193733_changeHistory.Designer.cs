@@ -4,6 +4,7 @@ using DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DB.Migrations
 {
     [DbContext(typeof(AirFligthsContext))]
-    partial class AirFligthsContextModelSnapshot : ModelSnapshot
+    [Migration("20230418193733_changeHistory")]
+    partial class changeHistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,23 +110,6 @@ namespace DB.Migrations
                     b.ToTable("city", (string)null);
                 });
 
-            modelBuilder.Entity("DB.Model.Dinner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Dinners");
-                });
-
             modelBuilder.Entity("DB.Model.History", b =>
                 {
                     b.Property<int>("Id")
@@ -149,15 +134,7 @@ namespace DB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Dinner")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("TitleOfTicket")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TypeOfPlan")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -167,23 +144,6 @@ namespace DB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Histories");
-                });
-
-            modelBuilder.Entity("DB.Model.TypeOfPlan", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TypeOfPlans");
                 });
 
             modelBuilder.Entity("DB.Plan", b =>
@@ -219,9 +179,6 @@ namespace DB.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("DinnerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdAirLines")
                         .HasColumnType("int")
                         .HasColumnName("id_air_lines");
@@ -234,18 +191,11 @@ namespace DB.Migrations
                         .HasColumnType("money")
                         .HasColumnName("price");
 
-                    b.Property<int?>("TypeOfPlanId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("DinnerId");
 
                     b.HasIndex("IdAirLines");
 
                     b.HasIndex("IdUser");
-
-                    b.HasIndex("TypeOfPlanId");
 
                     b.ToTable("tickets", (string)null);
                 });
@@ -337,10 +287,6 @@ namespace DB.Migrations
 
             modelBuilder.Entity("DB.Ticket", b =>
                 {
-                    b.HasOne("DB.Model.Dinner", "Dinner")
-                        .WithMany()
-                        .HasForeignKey("DinnerId");
-
                     b.HasOne("DB.AirLine", "IdAirLinesNavigation")
                         .WithMany("Tickets")
                         .HasForeignKey("IdAirLines")
@@ -352,17 +298,9 @@ namespace DB.Migrations
                         .HasForeignKey("IdUser")
                         .HasConstraintName("FK__tickets__id_user__38996AB5");
 
-                    b.HasOne("DB.Model.TypeOfPlan", "TypeOfPlan")
-                        .WithMany()
-                        .HasForeignKey("TypeOfPlanId");
-
-                    b.Navigation("Dinner");
-
                     b.Navigation("IdAirLinesNavigation");
 
                     b.Navigation("IdUserNavigation");
-
-                    b.Navigation("TypeOfPlan");
                 });
 
             modelBuilder.Entity("DB.AirCompany", b =>

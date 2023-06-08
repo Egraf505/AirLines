@@ -1,4 +1,5 @@
 ﻿using DB;
+using DB.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,9 @@ namespace MainForm
             remove { RemoveHandler(CancelEvent, value); }
         }
 
+        public string Dinner { get; set; } = null!;
+        public string TypeOfPlan { get; set; } = null!;
+
         public static readonly RoutedEvent AccesEvent = EventManager.RegisterRoutedEvent("AccesEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UserTicket));
         public static readonly RoutedEvent CancelEvent = EventManager.RegisterRoutedEvent("CancelEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UserTicket));
 
@@ -83,6 +87,24 @@ namespace MainForm
 
         private void Access_Click(object sender, RoutedEventArgs e)
         {
+            using (AirFligthsContext context = new AirFligthsContext())
+            {
+                History history = new History()
+                {
+                    UserId = _user.Id,
+                    TitleOfTicket = Number.ToString(),
+                    DateArrive = DatetimeArrive,
+                    DateDeparture = DatetimeDeparture,
+                    CityArrive = CityArrive,
+                    CityDeparture = CityDeparture,
+                    Dinner = Dinner,
+                    TypeOfPlan = TypeOfPlan
+                };
+
+                context.Histories.Add(history);
+                context.SaveChanges();
+            }
+
             MessageBox.Show("Дальнейшая обработка");
         }
 

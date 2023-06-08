@@ -23,9 +23,11 @@
 
   <ItemGroup>
     <Resource Include="Resources\right-arrow.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\transfer.png" />
+    <Resource Include="Resources\transfer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
