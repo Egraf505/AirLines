@@ -33,7 +33,7 @@ namespace DB
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=AirFligths;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-BA58OBS\\SQLEXPRESS;Database=AirFligths;Trusted_Connection=True;");
             }
         }
 
