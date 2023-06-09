@@ -120,7 +120,7 @@ namespace MainForm.ViewModel
 
                         var airLines = context.AirLines.Include(x => x.Tickets).Where(
                             x => x.CityArrival == incity.Id && x.CityDeparture == outcity.Id
-                            && x.DatetimeDeparture.Value.Date.ToUniversalTime() == departure.Date.ToUniversalTime() && x.DatetimeArrival.Value.Date.ToUniversalTime() == arrival.Date.ToUniversalTime()
+                            && x.DatetimeDeparture.Value.Date == departure.Date && x.DatetimeArrival.Value.Date == arrival.Date
                             ).ToList();
 
                         if (airLines != null)

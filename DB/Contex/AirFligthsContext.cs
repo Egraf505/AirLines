@@ -33,7 +33,7 @@ namespace DB
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=AirFligths;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=localhost;Database=AirFligths;Trusted_Connection=True;");
             }
         }
 
@@ -61,9 +61,11 @@ namespace DB
                 entity.Property(e => e.CityDeparture).HasColumnName("city_departure");
 
                 entity.Property(e => e.DatetimeArrival)
+                    .HasColumnType("datetime")
                     .HasColumnName("datetime_arrival");
 
                 entity.Property(e => e.DatetimeDeparture)
+                    .HasColumnType("datetime")
                     .HasColumnName("datetime_departure");
 
                 entity.Property(e => e.IdCompany).HasColumnName("id_company");
