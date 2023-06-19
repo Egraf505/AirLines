@@ -142,8 +142,8 @@ namespace MainForm.ViewModel
                                 ticket.Margin = new Thickness(10, 20, 10, 20);
 
                                 ticket.Number = airLine.Id;
-                                ticket.TimeDeparture = airLine.DatetimeDeparture!.Value.Date.ToString();
-                                ticket.TimeArrive = airLine.DatetimeArrival!.Value.Date.ToString();
+                                ticket.TimeDeparture = airLine.DatetimeDeparture!.Value.ToString();
+                                ticket.TimeArrive = airLine.DatetimeArrival!.Value.ToString();
                                 ticket.CityDeparture = cityDeparture.Tittle;
                                 ticket.CityArrive = cityArrive.Tittle;
                                 ticket.CountTickets = $"Билетов: {ticketList.Count}";
